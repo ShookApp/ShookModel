@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace ShookModel.Models
 {
-    class Shook
+    public class Shook
     {
         #region Variables 
         private ObjectId Id { get; set; }

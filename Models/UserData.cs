@@ -3,14 +3,15 @@ using System;
 
 namespace ShookModel.Models
 {
-    class UserData
+    public class UserData
     {
         #region Variables 
-        private ObjectId Id { get; set; }
-        private string UserName { get; set; }
-        private Object ProfilePicture { get; set; }
+        public string UserName { get; set; }
+        // TODO: Find a proper data type for the profile picture
+        // which can be stored in the MongoDB.
+        public Object ProfilePicture { get; set; }
         // TODO: Add RegEx for email validation. 
-        private string EmailAddress { get => this.EmailAddress; set => this.EmailAddress = value; }
+        public string EmailAddress { get; set; }
         #endregion
     }
 }
