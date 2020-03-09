@@ -1,16 +1,46 @@
 ﻿using MongoDB.Bson;
 using System;
+using System.Net.Mail;
 
 namespace ShookModel.Models
 {
     class UserData
     {
         #region Variables 
-        private ObjectId Id { get; set; }
-        private string UserName { get; set; }
-        private Object ProfilePicture { get; set; }
-        // TODO: Add RegEx for email validation. 
-        private string EmailAddress { get => this.EmailAddress; set => this.EmailAddress = value; }
+        public string UserName { get; set; }
+        public Object ProfilePicture { get; set; }
+
+        public string MailAddress
+        {
+            get { return this.MailAddress; }
+            set
+            {
+                if (IsValidMail(value))
+                {
+                    this.MailAddress = value;
+                }
+                else
+                {
+                    throw new FormatException();
+                }
+            }
+        }
+        #endregion
+
+        #region Methods
+        private bool IsValidMail(string mailAddressString)
+        {
+            try
+            {
+                MailAddress mailAddress = new MailAddress(mailAddressString);
+
+                return true;
+            }
+            catch (FormatException)
+            {
+                return false;
+            }
+        }
         #endregion
     }
 }
