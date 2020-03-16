@@ -4,12 +4,11 @@ using System.Net.Mail;
 
 namespace ShookModel.Models
 {
-    class UserData
+    public class UserData
     {
         #region Variables 
         public string UserName { get; set; }
         public Object ProfilePicture { get; set; }
-
         public string MailAddress
         {
             get { return this.MailAddress; }

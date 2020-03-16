@@ -1,11 +1,13 @@
-﻿using System;
+﻿using MongoDB.Bson;
+using System;
 using System.Collections.Generic;
 
 namespace ShookModel.Models
 {
-    class User
+    public class User
     {
         #region Variables
+        public ObjectId Id { get; set; }
         public UserData UserData { get; set; }
         public List<Shook> Shooks { get; set; }
         public int CreatedShooks { get; private set; }
@@ -14,7 +16,10 @@ namespace ShookModel.Models
 
         public User()
         {
-
+            // TODO: Add method for calculating the CreatedShooks and WonShooks
+            // when a User instance is created.
+            CreatedShooks = 0;
+            WonShooks = 0;
         }
 
         #region Methods 
