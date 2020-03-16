@@ -1,5 +1,6 @@
 ﻿using MongoDB.Bson;
 using System;
+using System.Net.Mail;
 
 namespace ShookModel.Models
 {
@@ -7,13 +8,38 @@ namespace ShookModel.Models
     {
         #region Variables 
         public string UserName { get; set; }
-
-        public string Password { get; set; }
-        // TODO: Find a proper data type for the profile picture
-        // which can be stored in the MongoDB.
         public Object ProfilePicture { get; set; }
-        // TODO: Add RegEx for email validation. 
-        public string EmailAddress { get; set; }
+        public string MailAddress
+        {
+            get { return this.MailAddress; }
+            set
+            {
+                if (IsValidMail(value))
+                {
+                    this.MailAddress = value;
+                }
+                else
+                {
+                    throw new FormatException();
+                }
+            }
+        }
+        #endregion
+
+        #region Methods
+        private bool IsValidMail(string mailAddressString)
+        {
+            try
+            {
+                MailAddress mailAddress = new MailAddress(mailAddressString);
+
+                return true;
+            }
+            catch (FormatException)
+            {
+                return false;
+            }
+        }
         #endregion
     }
 }
